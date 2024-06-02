@@ -4,7 +4,7 @@ import unittest
 
 # test using unittest
 class TestParkingSystem(unittest.TestCase):
-    def test_addCar(self):
+    def test_addCar(self) -> None:
         # instance of ParkingSystem named ps / object created from constructor
         ps = ParkingSystem(1, 1, 0)
         # 1. Big car parked
@@ -19,7 +19,7 @@ class TestParkingSystem(unittest.TestCase):
 
 
 # test using pytest
-def test_addCar():
+def test_addCar() -> None:
     ps = ParkingSystem(1, 1, 0)
     assert ps.addCar(1) == True
     assert ps.addCar(2) == True

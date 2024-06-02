@@ -4,8 +4,9 @@ version = "0.1.0"
 description = "This is poetry template"
 authors = ["Raphael Discky <raph.discky@gmail.com>"]
 readme = "README.md"
-packages = [{include = "my_package", from = "src"}, 
-{include = "example", from = "src"}
+packages = [
+    {include = "my_package", from = "src"}, 
+    {include = "example", from = "src"}
 ]
 
 [tool.poetry.dependencies]
@@ -14,6 +15,9 @@ requests = "^2.32.3"
 
 [tool.black]
 line-length = 90
+
+[tool.mypy]
+strict = true
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.1"
