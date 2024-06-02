@@ -18,5 +18,7 @@ jobs:
           cache: "poetry"
       - name: Install dependencies
         run: poetry install
+      - name: Format code with Black
+        run: poetry run black .
       - name: Run tests
         run: poetry run pytest -v

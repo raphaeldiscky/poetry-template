@@ -12,6 +12,8 @@ packages = [{include = "my_package", from = "src"},
 python = "^3.12"
 requests = "^2.32.3"
 
+[tool.black]
+line-length = 90
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.1"
