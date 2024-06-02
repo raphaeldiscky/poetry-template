@@ -1,4 +1,4 @@
-from src.example.main import ParkingSystem
+from src.example.parking_system import ParkingSystem
 import unittest
 
 # test using unittest
@@ -15,7 +15,6 @@ class TestParkingSystem(unittest.TestCase):
         print(ps.spots)
         # 5. Big car can't be parked
         self.assertEqual(ps.addCar(1), False)
-
 
 
 # test using pytest
