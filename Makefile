@@ -1,8 +1,8 @@
-test:
+test-all:
 	poetry run pytest -v
-format:
+format-all:
 	poetry run black .
+test:
+	poetry run pytest tests/$(NAME).py
 
-
-
-.PHONY: test format
+.PHONY: test-all format-all test
