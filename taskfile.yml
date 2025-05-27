@@ -28,11 +28,12 @@ tasks:
       - poetry run pytest {{if .FILE}}tests/test_{{.FILE}}.py{{else}}-v{{end}}
 
   format:
-    desc: Format all Python files using black
+    desc: Run code formatting and remove unused imports using Ruff
     cmds:
-      - poetry run black .
+      - poetry run ruff check --select I,F401 --fix
+      - poetry run ruff format
 
   lint:
-    desc: Run pyrefly lint
+    desc: Run linting using Pyrefly
     cmds:
-      - poetry run pyrefly lint
+      - poetry run pyrefly check
