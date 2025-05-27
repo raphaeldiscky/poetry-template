@@ -1,5 +1,5 @@
 import unittest
-from src.example.example import Book, Library
+from example.example import Book, Library
 
 
 class TestLibrary(unittest.TestCase):
@@ -41,7 +41,3 @@ class TestLibrary(unittest.TestCase):
         available_books = self.library.get_available_books()
         self.assertEqual(len(available_books), 1)
         self.assertEqual(available_books[0].title, "To Kill a Mockingbird")
-
-
-if __name__ == "__main__":
-    unittest.main()

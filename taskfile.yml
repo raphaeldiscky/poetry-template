@@ -1,6 +1,25 @@
 version: "3"
 
 tasks:
+  install:
+    desc: Install all dependencies for the project
+    cmds:
+      - poetry install
+
+  add:
+    desc: Add a new package to the project
+    cmds:
+      - poetry add {{.PACKAGE}}
+    requires:
+      vars: [PACKAGE]
+
+  add_dev:
+    desc: Add a new package to the project as a development dependency
+    cmds:
+      - poetry add {{.PACKAGE}} --groupdev
+    requires:
+      vars: [PACKAGE]
+
   test_all:
     desc: Run all tests with verbose output
     cmds:
@@ -10,6 +29,11 @@ tasks:
     desc: Format all Python files using black
     cmds:
       - poetry run black .
+
+  lint:
+    desc: Run pyrefly lint
+    cmds:
+      - poetry run pyrefly lint
 
   test:
     desc: Run a specific test file
