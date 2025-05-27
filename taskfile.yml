@@ -6,6 +6,11 @@ tasks:
     cmds:
       - poetry install
 
+  ci:
+    desc: Run Github Actions CI pipeline locally
+    cmds:
+      - act -n
+
   add:
     desc: Add a new package to the project
     cmds:
