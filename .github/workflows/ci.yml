@@ -13,6 +13,7 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install poetry==1.8.3
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -22,11 +23,11 @@ jobs:
       - name: Install Dependencies
         run: poetry install
 
+      - name: Format
+        run: poetry run ruff check --select I,F401 --fix && poetry run ruff format
+
       - name: Lint
         run: poetry run pyrefly check
-
-      - name: Format
-        run: poetry run black .
 
       - name: Test
         run: poetry run pytest -v
