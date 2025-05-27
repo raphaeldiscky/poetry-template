@@ -16,15 +16,12 @@ requests = "^2.32.3"
 [tool.black]
 line-length = 90
 
-[tool.mypy]
-strict = true
-
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.1"
 pytest-mock = "^3.14.0"
-mypy = "^1.10.0"
 isort = "^5.13.2"
 black = "^24.4.2"
+pyrefly = "^0.17.0"
 
 [build-system]
 requires = ["poetry-core"]

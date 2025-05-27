@@ -1,4 +1,4 @@
-from src.example.parking_system import ParkingSystem
+from example.parking_system import ParkingSystem
 import unittest
 
 

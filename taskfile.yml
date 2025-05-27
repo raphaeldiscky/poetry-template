@@ -1,19 +1,38 @@
 version: "3"
 
 tasks:
-  test_all:
-    desc: Run all tests with verbose output
+  install:
+    desc: Install all dependencies for the project
     cmds:
-      - poetry run pytest -v
+      - poetry install
 
-  format_all:
+  add:
+    desc: Add a new package to the project
+    cmds:
+      - poetry add {{.PACKAGE}}
+    requires:
+      vars: [PACKAGE]
+
+  add_dev:
+    desc: Add a new package to the project as a development dependency
+    cmds:
+      - poetry add {{.PACKAGE}} --group dev
+    requires:
+      vars: [PACKAGE]
+
+  test:
+    desc: Run all tests with verbose output or a specific test file
+    vars:
+      FILE: "{{.FILE}}"
+    cmds:
+      - poetry run pytest {{if .FILE}}tests/test_{{.FILE}}.py{{else}}-v{{end}}
+
+  format:
     desc: Format all Python files using black
     cmds:
       - poetry run black .
 
-  test:
-    desc: Run a specific test file
+  lint:
+    desc: Run pyrefly lint
     cmds:
-      - poetry run pytest tests/{{.NAME}}.py
-    requires:
-      vars: [NAME]
+      - poetry run pyrefly lint
