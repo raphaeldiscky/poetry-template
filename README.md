@@ -4,10 +4,10 @@ A simple Python project template using Poetry for dependency management.
 
 ## Quick Start
 
-Install project dependencies:
+Install project tools and dependencies:
 
 ```yml
-task install
+task install_tools
 ```
 
 ## Technologies - Libraries 🛠️
