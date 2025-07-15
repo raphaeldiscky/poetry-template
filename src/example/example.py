@@ -7,7 +7,7 @@ class Book:
 
 
 class Library:
-  def __init__(self) -> None:
+  def __init__(self):
     self.books: list[Book] = []
 
   def add_book(self, book: Book) -> None:

@@ -1,10 +1,16 @@
 version: "3"
 
 tasks:
-  install:
+  install_tools:
     desc: Install all dependencies for the project
     cmds:
-      - poetry install
+      - chmod +x ./scripts/install-tools.sh
+      - ./scripts/install-tools.sh
+
+  update_dependencies:
+    desc: Update all dependencies to their latest versions
+    cmds:
+      - poetry update
 
   ci:
     desc: Run Github Actions CI pipeline locally
