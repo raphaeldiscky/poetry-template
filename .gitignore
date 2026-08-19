@@ -11,7 +11,6 @@ __pycache__/
 
 .DS_Store
 .idea/*
-.python-version
 .vscode/*
 
 /docs/site/*
@@ -21,3 +20,7 @@ __pycache__/
 /poetry.toml
 
 node_modules
+
+# pnpm falls back to a project-local store when no global one is configured
+.pnpm-store/
+.claude/

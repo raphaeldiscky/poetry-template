@@ -7,13 +7,20 @@ tasks:
       - chmod +x ./scripts/install-tools.sh
       - ./scripts/install-tools.sh
 
-  update_dependencies:
-    desc: Update all dependencies to their latest versions
+  sync:
+    desc: Install the exact dependencies in the lockfiles (run after cloning or pulling)
+    cmds:
+      - poetry sync
+      - pnpm install --frozen-lockfile
+
+  upgrade:
+    desc: Upgrade all dependencies to their latest versions and update the lockfiles
     cmds:
       - poetry update
+      - pnpm update --latest
 
-  ci:
-    desc: Run Github Actions CI pipeline locally
+  run_ci:
+    desc: Run the CI pipeline locally
     cmds:
       - act -n
 
@@ -45,6 +52,15 @@ tasks:
       - poetry run ruff format
 
   lint:
-    desc: Run linting using Pyrefly
+    desc: Run linting using Ruff and Pyrefly
     cmds:
+      # bare `ruff check` honours [tool.ruff.lint] select, including the S
+      # (flake8-bandit) security rules; task format overrides select, so it
+      # cannot stand in for this.
+      - poetry run ruff check
       - poetry run pyrefly check
+
+  deadcode:
+    desc: Detect dead code using Vulture
+    cmds:
+      - poetry run vulture

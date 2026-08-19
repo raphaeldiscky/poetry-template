@@ -9,25 +9,37 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Install Poetry
-        run: |
-          pip install --upgrade pip
-          pip install poetry==1.8.3
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      # Installs python, poetry, node and pnpm from .prototools — the single
+      # source of truth for every toolchain version in this repo.
+      - name: Setup Toolchain
+        uses: moonrepo/setup-toolchain@v0
         with:
-          python-version: "3.12"
-          cache: "poetry"
+          auto-install: true
+
+      - name: Install Task
+        uses: arduino/setup-task@v2
+        with:
+          version: 3.x
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Dependencies
-        run: poetry install
+        run: task sync
 
-      - name: Format
-        run: poetry run ruff check --select I,F401 --fix && poetry run ruff format
+      - name: Format Check
+        run: |
+          task format
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "Working tree is dirty after 'task format'. Please run it locally."
+            git status --porcelain
+            git diff
+            exit 1
+          fi
 
       - name: Lint
-        run: poetry run pyrefly check
+        run: task lint
+
+      - name: Dead Code Check
+        run: task deadcode
 
       - name: Test
-        run: poetry run pytest -v
+        run: task test
